@@ -1,4 +1,4 @@
 #!/bin/bash
-# source /home/ec2-user/web/.env
+# source /home/ubuntu/web/.env
 
-cd /home/ec2-user/web/ && /usr/local/bin/docker-compose -f docker-compose.yml up -d
+cd /home/ubuntu/web/ && /usr/local/bin/docker-compose -f docker-compose.yml up -d
