@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cp .env.sample .env       
+      - cp env.sample .env       
       - docker-compose build
       - docker images
       - docker tag $IMAGE_BE:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_BE:$IMAGE_TAG      
