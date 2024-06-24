@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /tmp/web/
-    overwrite: purge
+    destination: /home/ubuntu/web/
+    overwrite: true
 file_exists_behavior: OVERWRITE
 hooks:
   ApplicationStop:
