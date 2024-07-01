@@ -47,8 +47,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.frontend
-      args:
-        - REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
+      # args:
+      #   - REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
     ports:
       - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
     networks:
