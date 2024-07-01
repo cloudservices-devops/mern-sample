@@ -9,7 +9,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cp env.sample .env       
+      - cp env.sample .env
       - docker-compose build
       - docker images
       - docker tag $IMAGE_BE:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_BE:$IMAGE_TAG      
@@ -20,6 +20,11 @@ phases:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_BE:$IMAGE_TAG 
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_FE:$IMAGE_TAG
+      - printf '[{"name":"%s","imageUri":"%s"}]' $IMAGE_BE $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_BE:$IMAGE_TAG > BEimagedefinition.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' $IMAGE_FE $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_FE:$IMAGE_TAG > FEimagedefinition.json
+      - cat BEimagedefinition.json
+      - cat FEimagedefinition.json
+
 artifacts:
  files:
    - codedeploy/**/*

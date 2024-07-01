@@ -1,8 +1,0 @@
-FROM public.ecr.aws/docker/library/node:16.20.2
-
-WORKDIR /docker-api
-COPY package.json .
-RUN npm install
-COPY . .
-CMD npm start
-
