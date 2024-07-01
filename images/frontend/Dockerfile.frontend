@@ -1,0 +1,21 @@
+# Stage 1
+FROM public.ecr.aws/docker/library/node:16.20.2 as build-stage
+
+WORKDIR /docker-ui
+COPY package.json .
+RUN npm install
+COPY . .
+
+# ARG REACT_APP_API_BASE_URL
+# ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
+
+RUN npm run build
+
+# Stage 2
+FROM public.ecr.aws/docker/library/nginx:1.18-alpine
+
+COPY --from=build-stage /docker-ui/build /usr/share/nginx/html
+EXPOSE $REACT_DOCKER_PORT
+
+CMD nginx -g 'daemon off;'
+
